@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <label for="text">Text</label>
+    <input type="text" id="text" name="text">
+    <input type="number" id="shift" name="shift" min="1" max="25" value="3">
+    <button onclick="encrypt()">Encrypt</button>
+    <button onclick="decrypt()">Decrypt</button>
+
+    <label for="result">Results:</label>
+    <textarea id="result" rows="4" cols="50" readonly></textarea>
+    <button onclick="clearFields()">Clear all</button>
+    <button onclick="copyResult()">Copy</button> <!-- Copy button -->
+</body>
+<script src="js/caesar.js"></script>
+</html>
