@@ -1,6 +1,13 @@
 function encrypt() {
     const text = document.getElementById("text").value;
-    const shift = parseInt(document.getElementById("shift").value);
+    let shift = parseInt(document.getElementById("shift").value);
+
+    // Validate shift value
+    if (shift < 1 || shift > 25 || isNaN(shift)) {
+        alert("Shift value must be between 1 and 25.");
+        return;
+    }
+
     let result = ""; // Initialize result as an empty string
 
     for (let i = 0; i < text.length; i++) {
@@ -24,7 +31,14 @@ function encrypt() {
 
 function decrypt() {
     const text = document.getElementById("text").value;
-    const shift = parseInt(document.getElementById("shift").value);
+    let shift = parseInt(document.getElementById("shift").value);
+
+    // Validate shift value
+    if (shift < 1 || shift > 25 || isNaN(shift)) {
+        alert("Shift value must be between 1 and 25.");
+        return;
+    }
+
     let result = ""; // Initialize result as an empty string
 
     for (let i = 0; i < text.length; i++) {
@@ -67,4 +81,3 @@ function copyResult() {
         alert("No result to copy!");
     }
 }
-    
