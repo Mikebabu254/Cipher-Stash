@@ -20,6 +20,9 @@ function encrypt() {
         } else if (code >= 97 && code <= 122) {
             // Lowercase letters
             result += String.fromCharCode(((code - 97 + shift) % 26) + 97);
+        } else if (code >= 48 && code <= 57) {
+            // Numbers (0-9)
+            result += String.fromCharCode(((code - 48 + shift) % 10) + 48);
         } else {
             // Non-alphabetic characters
             result += char;
@@ -51,6 +54,9 @@ function decrypt() {
         } else if (code >= 97 && code <= 122) {
             // Lowercase letters
             result += String.fromCharCode(((code - 97 - shift + 26) % 26) + 97);
+        } else if (code >= 48 && code <= 57) {
+            // Numbers (0-9)
+            result += String.fromCharCode(((code - 48 - shift + 10) % 10) + 48);
         } else {
             // Non-alphabetic characters
             result += char;
