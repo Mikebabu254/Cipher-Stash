@@ -160,6 +160,20 @@
   const inputStatement = document.getElementById("inputStatement").value;
   const outputDiv = document.getElementById("decodedOutput");
 
+  // Dictionary for number words
+  const numberWords = {
+    "zero": "0",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9"
+  };
+
   if (!inputStatement) {
     outputDiv.textContent = "Please enter statements to decode.";
     return;
@@ -171,7 +185,19 @@
   let result = "";
 
   for (const statement of statements) {
-    if (statement.length > 0) {
+    let foundNumber = false;
+    
+    // Check if the statement contains any number word
+    for (const [word, number] of Object.entries(numberWords)) {
+      if (statement.toLowerCase().includes(word)) {
+        result += number; // If found, output the number
+        foundNumber = true;
+        break; // Break after finding the first match
+      }
+    }
+
+    // If no number word is found, take the first letter of the statement
+    if (!foundNumber) {
       const firstLetter = statement[0];
       result += firstLetter; // Add the first letter to the result
     }
@@ -179,6 +205,7 @@
 
   outputDiv.textContent = result;
 }
+
 
 
   </script>
