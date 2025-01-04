@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Letter and Number to Words</title>
+  <title>Letter and Number to Statement Converter</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -49,9 +49,18 @@
 <body>
   <div class="container">
     <h2>Letter and Number to Statement Converter</h2>
+
+    <!-- Convert Letters/Numbers to Statements -->
+    <h3>Convert Letters/Numbers to Statements</h3>
     <input type="text" id="inputText" placeholder="Enter letters or numbers (e.g., a1b2C3)" />
     <button onclick="generateStatement()">Generate Statement</button>
     <div class="output" id="output"></div>
+
+    <!-- Convert Statements to Letters/Numbers -->
+    <h3>Convert Statements to Letters/Numbers</h3>
+    <input type="text" id="inputStatement" placeholder="Enter statements to decode" />
+    <button onclick="decodeStatement()">Decode to Letters/Numbers</button>
+    <div class="output" id="decodedOutput"></div>
   </div>
 
   <script>
@@ -99,6 +108,14 @@
       9: "Its nine lives to explore."
     };
 
+    // Reverse mappings for decoding
+    const reverseStatementDictionary = Object.fromEntries(
+      Object.entries(statementDictionary).map(([key, value]) => [value, key])
+    );
+    const reverseNumberDictionary = Object.fromEntries(
+      Object.entries(numberDictionary).map(([key, value]) => [value, key])
+    );
+
     function generateStatement() {
       const inputText = document.getElementById("inputText").value;
       const outputDiv = document.getElementById("output");
@@ -111,7 +128,6 @@
       let result = "";
       for (const char of inputText) {
         if (/[a-zA-Z]/.test(char)) {
-          // Handle letters
           const isUpperCase = char === char.toUpperCase();
           const lowerCaseChar = char.toLowerCase();
           const statement = statementDictionary[lowerCaseChar];
@@ -124,11 +140,9 @@
             result += `(${char} has no predefined statement)`;
           }
         } else if (/[0-9]/.test(char)) {
-          // Handle numbers
           const statement = numberDictionary[char];
           result += statement ? statement : `(${char} has no predefined statement)`;
         } else {
-          // Handle non-alphanumeric characters
           result += `(${char} is not supported)`;
         }
 
@@ -137,6 +151,36 @@
 
       outputDiv.textContent = result.trim();
     }
+
+
+
+
+
+    function decodeStatement() {
+  const inputStatement = document.getElementById("inputStatement").value;
+  const outputDiv = document.getElementById("decodedOutput");
+
+  if (!inputStatement) {
+    outputDiv.textContent = "Please enter statements to decode.";
+    return;
+  }
+
+  // Split the input into individual statements
+  const statements = inputStatement.split(".").map(s => s.trim()).filter(s => s);
+
+  let result = "";
+
+  for (const statement of statements) {
+    if (statement.length > 0) {
+      const firstLetter = statement[0];
+      result += firstLetter; // Add the first letter to the result
+    }
+  }
+
+  outputDiv.textContent = result;
+}
+
+
   </script>
 </body>
 </html>

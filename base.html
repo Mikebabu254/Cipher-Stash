@@ -36,6 +36,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
+      margin-right: 10px;
     }
     button:hover {
       background-color: #0056b3;
@@ -50,24 +51,56 @@
 </head>
 <body>
   <div class="container">
-    <h2>Text to Base64 Converter</h2>
+    <h2>Text and Base64 Converter</h2>
+
+    <!-- Text to Base64 -->
+    <h3>Text to Base64</h3>
     <textarea id="inputText" placeholder="Enter text to encode"></textarea>
     <button onclick="convertToBase64()">Convert to Base64</button>
-    <div class="output" id="output"></div>
+    <div class="output" id="outputBase64"></div>
+
+    <!-- Base64 to Text -->
+    <h3>Base64 to Text</h3>
+    <textarea id="inputBase64" placeholder="Enter Base64 to decode"></textarea>
+    <button onclick="convertFromBase64()">Convert to Text</button>
+    <div class="output" id="outputText"></div>
   </div>
 
   <script>
+    // Convert plain text to Base64
     function convertToBase64() {
       const inputText = document.getElementById("inputText").value;
-      const outputDiv = document.getElementById("output");
+      const outputDiv = document.getElementById("outputBase64");
 
       if (!inputText) {
         outputDiv.textContent = "Please enter some text to encode.";
         return;
       }
 
-      const base64Text = btoa(inputText);
-      outputDiv.textContent = base64Text;
+      try {
+        const base64Text = btoa(inputText);
+        outputDiv.textContent = base64Text;
+      } catch (error) {
+        outputDiv.textContent = "Error: Unable to encode the text.";
+      }
+    }
+
+    // Convert Base64 to plain text
+    function convertFromBase64() {
+      const inputBase64 = document.getElementById("inputBase64").value;
+      const outputDiv = document.getElementById("outputText");
+
+      if (!inputBase64) {
+        outputDiv.textContent = "Please enter Base64 text to decode.";
+        return;
+      }
+
+      try {
+        const plainText = atob(inputBase64);
+        outputDiv.textContent = plainText;
+      } catch (error) {
+        outputDiv.textContent = "Error: Invalid Base64 input.";
+      }
     }
   </script>
 </body>
