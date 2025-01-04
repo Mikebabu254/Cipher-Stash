@@ -67,17 +67,22 @@ function clearFields() {
 
 function copyResult() {
     const result = document.getElementById("result").value;
+    const copyButton = document.querySelector("#copyButton"); // Select the copy button
 
     if (result) {
         navigator.clipboard.writeText(result)
             .then(() => {
-                alert("Result copied to clipboard!");
+                // Change the button text to "Copied"
+                copyButton.textContent = "Copied";
+
+                // Revert the button text back to "Copy" after 2 seconds
+                setTimeout(() => {
+                    copyButton.textContent = "Copy";
+                }, 2000);
             })
             .catch(err => {
                 console.error("Failed to copy: ", err);
-                alert("Failed to copy the text. Please try again.");
             });
-    } else {
-        alert("No result to copy!");
     }
 }
+
