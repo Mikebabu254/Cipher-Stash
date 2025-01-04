@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Letter to Words</title>
+  <title>Letter and Number to Words</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -48,14 +48,14 @@
 </head>
 <body>
   <div class="container">
-    <h2>Letter to Statement Converter</h2>
-    <input type="text" id="inputText" placeholder="Enter letters (e.g., tiwiTy)" />
+    <h2>Letter and Number to Statement Converter</h2>
+    <input type="text" id="inputText" placeholder="Enter letters or numbers (e.g., a1b2C3)" />
     <button onclick="generateStatement()">Generate Statement</button>
     <div class="output" id="output"></div>
   </div>
 
   <script>
-    // Dictionary of statements for each letter
+    // Dictionary of statements for letters
     const statementDictionary = {
       a: "Amazing things happen every day.",
       b: "Be bold and brave.",
@@ -85,20 +85,54 @@
       z: "Zest for life fuels achievement."
     };
 
+    // Dictionary of statements for numbers
+    const numberDictionary = {
+      0: "You know zero is the start of something big.",
+      1: "Make one step at a time.",
+      2: "let me tell you two minds are better than one.",
+      3: "Hahaha three is the charm.",
+      4: "I was told four corners of the world await.",
+      5: "Just know five fingers make a fist.",
+      6: "Is it true that six is the number of balance.",
+      7: "Many people say seven is a lucky number.",
+      8: "Did you know Eight is infinite possibilities.",
+      9: "Its nine lives to explore."
+    };
+
     function generateStatement() {
       const inputText = document.getElementById("inputText").value;
       const outputDiv = document.getElementById("output");
-      
+
       if (!inputText) {
-        outputDiv.textContent = "Please enter some letters.";
+        outputDiv.textContent = "Please enter some letters or numbers.";
         return;
       }
 
       let result = "";
-      for (const letter of inputText) {
-        const lowerCaseLetter = letter.toLowerCase();
-        const statement = statementDictionary[lowerCaseLetter] || `(${letter} has no predefined statement)`;
-        result += statement + " ";
+      for (const char of inputText) {
+        if (/[a-zA-Z]/.test(char)) {
+          // Handle letters
+          const isUpperCase = char === char.toUpperCase();
+          const lowerCaseChar = char.toLowerCase();
+          const statement = statementDictionary[lowerCaseChar];
+
+          if (statement) {
+            result += isUpperCase
+              ? statement.charAt(0).toUpperCase() + statement.slice(1)
+              : statement.charAt(0).toLowerCase() + statement.slice(1);
+          } else {
+            result += `(${char} has no predefined statement)`;
+          }
+        } else if (/[0-9]/.test(char)) {
+          // Handle numbers
+          const statement = numberDictionary[char];
+          result += statement ? statement : `(${char} has no predefined statement)`;
+        } else {
+          // Handle non-alphanumeric characters
+          result += `(${char} is not supported)`;
+        }
+
+        result += " ";
       }
 
       outputDiv.textContent = result.trim();
