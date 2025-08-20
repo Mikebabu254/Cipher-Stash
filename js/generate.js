@@ -1,0 +1,132 @@
+// Dictionary of statements for letters
+const statementDictionary = {
+  a: "Amazing things happen every day.",
+  b: "Be bold and brave.",
+  c: "Create your own opportunities.",
+  d: "Dream big and dare to fail.",
+  e: "Every effort counts.",
+  f: "Follow your passions.",
+  g: "Greatness comes from within.",
+  h: "Happiness is a choice.",
+  i: "Innovate and inspire others.",
+  j: "Jump into new adventures.",
+  k: "Kindness makes the world brighter.",
+  l: "Learn from every experience.",
+  m: "Make moments matter.",
+  n: "Never give up on your dreams.",
+  o: "Opportunities are everywhere.",
+  p: "Perseverance leads to success.",
+  q: "Question everything, learn something.",
+  r: "Reach for the stars.",
+  s: "Stay strong and focused.",
+  t: "Take time to reflect.",
+  u: "Unlock your potential.",
+  v: "Value every moment.",
+  w: "Work hard, play harder.",
+  x: "X marks the spot of success.",
+  y: "You are capable of greatness.",
+  z: "Zest for life fuels achievement."
+
+};// Dictionary of statements for numbers
+const numberDictionary = {
+  0: "You know zero is the start of something big.",
+  1: "Make one step at a time.",
+  2: "let me tell you two minds are better than 1.",
+  3: "Hahaha three is the charm.",
+  4: "I was told four corners of the world await.",
+  5: "Just know five fingers make a fist.",
+  6: "Is it true that six is the number of balance.",
+  7: "Many people say seven is a lucky number.",
+  8: "Did you know Eight is infinite possibilities.",
+  9: "Its nine lives to explore."
+};
+
+// Reverse mappings for decoding
+const reverseStatementDictionary = Object.fromEntries(
+  Object.entries(statementDictionary).map(([key, value]) => [value, key])
+);
+
+const reverseNumberDictionary = Object.fromEntries(
+  Object.entries(numberDictionary).map(([key, value]) => [value, key])
+);
+
+function generateStatement() {
+  const inputText = document.getElementById("inputText").value;
+  const outputDiv = document.getElementById("output");
+  if (!inputText) {
+    outputDiv.textContent = "Please enter some letters or numbers.";
+    return;
+  }
+  let result = "";
+  for (const char of inputText) {
+    if (/[a-zA-Z]/.test(char)) {
+      const isUpperCase = char === char.toUpperCase();
+      const lowerCaseChar = char.toLowerCase();
+      const statement = statementDictionary[lowerCaseChar];
+      if (statement) {
+        result += isUpperCase
+          ? statement.charAt(0).toUpperCase() + statement.slice(1)
+          : statement.charAt(0).toLowerCase() + statement.slice(1);
+      } else {
+        result += `(${char} has no predefined statement)`;
+      }
+    } else if (/[0-9]/.test(char)) {
+      const statement = numberDictionary[char];
+      result += statement ? statement : `(${char} has no predefined statement)`;
+    } else {
+      result += `(${char} is not supported)`;
+    }
+    result += " ";
+  }
+  outputDiv.textContent = result.trim();
+}
+
+function decodeStatement() {
+  const inputStatement = document.getElementById("inputStatement").value;
+  const outputDiv = document.getElementById("decodedOutput");
+
+  // Dictionary for number words
+  const numberWords = {
+    "zero": "0",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9"
+  };
+
+  if (!inputStatement) {
+    outputDiv.textContent = "Please enter statements to decode.";
+    return;
+  }
+
+  // Split the input into individual statements
+  const statements = inputStatement.split(".").map(s => s.trim()).filter(s => s);
+
+  let result = "";
+
+  for (const statement of statements) {
+    let foundNumber = false;
+    
+    // Check if the statement contains any number word
+    for (const [word, number] of Object.entries(numberWords)) {
+      if (statement.toLowerCase().includes(word)) {
+        result += number; // If found, output the number
+        foundNumber = true;
+        break; // Break after finding the first match
+      }
+    }
+
+    // If no number word is found, take the first letter of the statement
+    if (!foundNumber) {
+      const firstLetter = statement[0];
+      result += firstLetter; // Add the first letter to the result
+    }
+  }
+
+  outputDiv.textContent = result;
+}
