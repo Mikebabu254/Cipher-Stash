@@ -16,10 +16,14 @@
     </div>
     <h1>SHA256 Encryption</h1>
     <p>SHA256 is a cryptographic hash function that produces a fixed-size output (256 bits) from any input data. It is widely used for data integrity and security.</p>
-    <p>Enter text below to generatr its SHA-256 hash:</p>
+    <p>Enter a text or choose file to generatr its SHA-256 hash:</p>
     <textarea id="inputText" rows="4" placeholder="Type something..."></textarea>
     <button onclick="generateHash()">Generate Hash</button>
 
+    <hr>
+    <input type="file" id="inputFile" /><br>
+  <button onclick="generateFileHash()">Generate File Hash</button>
+  
   <h3>Result:</h3>
   <div class="hash-output" id="hashResult"></div>
   <button onclick="copyHash()">Copy Hash</button>
