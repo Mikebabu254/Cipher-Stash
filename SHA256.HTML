@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHA256</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/sha256.css">
 </head>
 <body>
     <div class="nav">
@@ -12,7 +12,7 @@
         <a href="index.html"><button>Caesar</button></a>
         <a href="base.html"><button>Base 64</button></a>
         <a href="generate.html"><button>Generate</button></a>
-        <a href="SHA256.HTML"><button>SHA 256</button></a>
+        <a href="SHA256.html"><button>SHA 256</button></a>
     </div>
     <h1>SHA256 Encryption</h1>
     <p>SHA256 is a cryptographic hash function that produces a fixed-size output (256 bits) from any input data. It is widely used for data integrity and security.</p>
@@ -22,6 +22,7 @@
 
   <h3>Result:</h3>
   <div class="hash-output" id="hashResult"></div>
+  <button onclick="copyHash()">Copy Hash</button>
 </body>
 </html>
 <script src="js/sha256.js"></script>
