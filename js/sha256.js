@@ -15,6 +15,19 @@ async function generateHash() {
   document.getElementById("hashResult").innerText = hash;
 }
 
+async function generateFileHash() {
+      const fileInput = document.getElementById("inputFile");
+      if (fileInput.files.length === 0) {
+        document.getElementById("hashResult").innerText = "Please select a file.";
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const arrayBuffer = await file.arrayBuffer();
+      const hash = await sha256(arrayBuffer);
+      document.getElementById("hashResult").innerText = hash;
+    }
+
 function copyHash() {
   const hash = document.getElementById("hashResult").innerText;
   if (!hash || hash.startsWith("Please")) {
