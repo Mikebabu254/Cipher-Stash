@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHA256</title>
+    <link rel="stylesheet" href="css/sha256.css">
+</head>
+<body>
+    <div class="nav">
+        Caesar Cyper 
+        <a href="index.html"><button>Caesar</button></a>
+        <a href="base.html"><button>Base 64</button></a>
+        <a href="generate.html"><button>Generate</button></a>
+        <a href="SHA256.html"><button>SHA 256</button></a>
+    </div>
+
+    <h1>SHA256 Encryption</h1>
+    <p>SHA256 is a cryptographic hash function that produces a fixed-size output (256 bits) from any input data. It is widely used for data integrity and security.</p>
+    <p>Enter a text or choose file to generatr its SHA-256 hash:</p>
+    <textarea id="inputText" rows="4" placeholder="Type something..."></textarea>
+    <button onclick="generateHash()">Generate Hash</button>
+
+    <hr>
+    <input type="file" id="inputFile" /><br>
+  <button onclick="generateFileHash()">Generate File Hash</button>
+
+  <h3>Result:</h3>
+  <div class="hash-output" id="hashResult"></div>
+  <button onclick="copyHash()">Copy Hash</button>
+</body>
+</html>
+<script src="js/sha256.js"></script>
