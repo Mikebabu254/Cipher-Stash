@@ -3,7 +3,7 @@ This is my encryptions
 
 ## access view web to see how it works
 us this link below to access the web to see how it work
-https://mikebabu254.github.io/my-encryption/
+[Cyper-Stash](https://mikebabu254.github.io/Cipher-Stash/)
 
 ## This is an encryption
 it encrypt you text according to the numbers of shift you want ranging from *1* to *25*
