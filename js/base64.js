@@ -1,3 +1,20 @@
+const copyButton = document.getElementById("copy");
+
+
+copyButton.addEventListener("click", () => {
+  const outputDiv = document.getElementById("outputBase64");
+  const textToCopy = outputDiv.textContent;
+  if (textToCopy) {
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      alert(textToCopy + " Copied to clipboard!");
+      copyButton.textContent = "COPIED";
+      setTimeout(() => {
+        copyButton.textContent = "COPY";
+      }, 2000);
+    });
+  }
+});
+
 // Convert plain text to Base64
 function convertToBase64() {
   const inputText = document.getElementById("inputText").value;
@@ -28,3 +45,4 @@ function convertFromBase64() {
     outputDiv.textContent = "Error: Invalid Base64 input.";
   }
 }
+
