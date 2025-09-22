@@ -125,11 +125,6 @@ function md5(input) {
   // Produce the final hash value (little-endian) as hex
   return toHexLE(a0) + toHexLE(b0) + toHexLE(c0) + toHexLE(d0);
 }
-
-// Example usage:
-console.log(md5("d")); // 5d41402abc4b2a76b9719d911017c592
-console.log(md5(""));
-
  result.innerText = "MD5: " + md5(input);
 
 }
