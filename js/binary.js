@@ -27,3 +27,32 @@ function convertToBinary() {
     }
   document.getElementById("result").innerText = result;
 }
+
+function convertFromBinary() {
+    let binaryInput = document.getElementById("binaryInput").value;
+    let binaryValues = binaryInput.split(" ");
+    let result = ""; 
+    let isNumber = true;
+
+    // Check if all binary values are valid
+    for (let bin of binaryValues) {
+        if (!/^[01]+$/.test(bin)) {
+            document.getElementById("binaryResult").innerText = "Invalid binary input!";
+            return;
+        }
+        if (bin.length > 8) {
+            isNumber = false; // If any binary value is longer than 8 bits, treat as string
+        }
+    }
+
+    if (binaryValues.length === 1 && isNumber) {
+        // Convert single binary value to number
+        result = "Number: " + parseInt(binaryValues[0], 2);
+    } else {
+        // Convert binary values to string
+        result = "String: " + binaryValues
+            .map(bin => String.fromCharCode(parseInt(bin, 2)))
+            .join("");
+    }
+    document.getElementById("binaryResult").innerText = result;
+}
